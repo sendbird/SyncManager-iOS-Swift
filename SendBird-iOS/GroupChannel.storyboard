@@ -515,8 +515,49 @@
                                             <outlet property="notificationSwitch" destination="aDs-5Z-AJ0" id="zjw-Fp-w4w"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupChannelSettingsInviteMemberTableViewCell" id="hCz-xY-8Ou" customClass="GroupChannelSettingsInviteMemberTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupChannelSettingsResetMyHistoryTableViewCell" id="SCR-ch-pdz" customClass="GroupChannelSettingsResetMyHistoryTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="238" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SCR-ch-pdz" id="2qN-O1-ich">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FsQ-Kv-iiL" userLabel="Background View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BFF-JE-LjF" userLabel="ResetMyHistory Setting Icon Image View">
+                                                    <rect key="frame" x="19" y="6" width="30" height="30.5"/>
+                                                    <color key="tintColor" name="color_bar_item"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="JDQ-B0-j7P"/>
+                                                        <constraint firstAttribute="width" constant="30" id="vip-pG-Jaz"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Chatting History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwF-gk-ZSt" userLabel="ResetMyHistory Setting Label">
+                                                    <rect key="frame" x="68" y="11.5" width="172.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.21176470589999999" green="0.1764705882" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="FsQ-Kv-iiL" secondAttribute="bottom" id="4mk-my-HfT"/>
+                                                <constraint firstItem="FsQ-Kv-iiL" firstAttribute="top" secondItem="2qN-O1-ich" secondAttribute="top" id="AnD-fM-PgP"/>
+                                                <constraint firstItem="BFF-JE-LjF" firstAttribute="leading" secondItem="2qN-O1-ich" secondAttribute="leading" constant="19" id="BQh-Nw-Nzj"/>
+                                                <constraint firstItem="UwF-gk-ZSt" firstAttribute="leading" secondItem="BFF-JE-LjF" secondAttribute="trailing" constant="19" id="BqC-xQ-ikD"/>
+                                                <constraint firstItem="UwF-gk-ZSt" firstAttribute="centerY" secondItem="FsQ-Kv-iiL" secondAttribute="centerY" id="Erb-38-NXr"/>
+                                                <constraint firstItem="BFF-JE-LjF" firstAttribute="centerY" secondItem="2qN-O1-ich" secondAttribute="centerY" id="Nzj-bW-8Bt"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="FsQ-Kv-iiL" firstAttribute="leading" secondItem="SCR-ch-pdz" secondAttribute="leading" id="Fv7-GC-31g"/>
+                                            <constraint firstAttribute="trailing" secondItem="FsQ-Kv-iiL" secondAttribute="trailing" id="wqW-c1-PBD"/>
+                                        </constraints>
+                                        <viewLayoutGuide key="safeArea" id="ulS-aR-kp0"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupChannelSettingsInviteMemberTableViewCell" id="hCz-xY-8Ou" customClass="GroupChannelSettingsInviteMemberTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="281.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hCz-xY-8Ou" id="Cs5-rT-v66">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -557,7 +598,7 @@
                                         <viewLayoutGuide key="safeArea" id="V39-Qs-5aR"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupChannelSettingsMemberTableViewCell" id="QcM-9p-84f" customClass="GroupChannelSettingsMemberTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="281.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="325" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QcM-9p-84f" id="i1s-eD-u4C">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -651,7 +692,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupChannelSettingsLeaveChatTableViewCell" id="p2Q-Ab-WjV" customClass="GroupChannelSettingsLeaveChatTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="325" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="368.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p2Q-Ab-WjV" id="O31-ib-vWw">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -1199,6 +1240,10 @@
         <image name="img_icon_notification_setting" width="30" height="30"/>
         <image name="img_online" width="6" height="6"/>
         <image name="img_toast_check" width="40" height="32"/>
+        <image name="trash" catalog="system" width="60" height="64"/>
+        <namedColor name="color_bar_item">
+            <color red="0.47499999403953552" green="0.31400001049041748" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="color_channel_settings_bg">
             <color red="0.93699997663497925" green="0.93699997663497925" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

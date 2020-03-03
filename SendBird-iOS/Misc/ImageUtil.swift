@@ -88,7 +88,7 @@ class ProfileImageView: UIView {
         mainStackView.spacing = spacing
         mainStackView.distribution = .fillEqually
         self.addSubview(mainStackView)
-        
+    
         if users.isEmpty {
             let imageContainerView = UIView(frame: self.frame)
             let imageView = UIImageView(image: UIImage(named: "img_default_profile_image_1"))
@@ -104,30 +104,26 @@ class ProfileImageView: UIView {
             imageView.centerXAnchor.constraint(equalTo: imageContainerView.centerXAnchor).isActive = true
             imageView.centerYAnchor.constraint(equalTo: imageContainerView.centerYAnchor).isActive = true
             imageContainerView.clipsToBounds = true
-            
-            
         }
         
         for user in users{
             let imageContainerView = UIView(frame: self.frame)
             let imageView = UIImageView(withUser: user)
             imageContainerView.addSubview(imageView)
+            imageView.contentMode = .scaleAspectFill
             imageView.translatesAutoresizingMaskIntoConstraints = false
             imageContainerView.translatesAutoresizingMaskIntoConstraints = false
             if users.count == 1 {
                 mainStackView.addArrangedSubview(imageContainerView)
+                
             }
             else {
-                
                 let stackView = UIStackView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
                 stackView.addArrangedSubview(imageContainerView)
                 stackView.axis = .vertical
                 stackView.distribution = .fillEqually
                 stackView.spacing = spacing
-                
-                imageView.heightAnchor.constraint(equalToConstant: imageContainerView.frame.height).isActive = true
-                imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
-                
+
                 if mainStackView.arrangedSubviews.count < 2 {
                     mainStackView.addArrangedSubview(stackView)
                 }
@@ -140,6 +136,8 @@ class ProfileImageView: UIView {
                 }
             }
             
+            imageView.heightAnchor.constraint(equalToConstant: imageContainerView.frame.height).isActive = true
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
             imageView.centerXAnchor.constraint(equalTo: imageContainerView.centerXAnchor).isActive = true
             imageView.centerYAnchor.constraint(equalTo: imageContainerView.centerYAnchor).isActive = true
             imageContainerView.clipsToBounds = true

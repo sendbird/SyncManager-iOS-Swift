@@ -45,14 +45,14 @@ class AlertControl {
             
         case .alert:
             break
-            
+
         @unknown default:
             fatalError()
         }
         
         parent?.view.endEditing(true)
         parent?.present(alert, animated: true, completion: {
-            
+
         });
     }
     

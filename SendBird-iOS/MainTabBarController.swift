@@ -9,8 +9,9 @@
 import UIKit
 import SendBirdSDK
 import UserNotifications
+import SendBirdSyncManager
 
-class MainTabBarController: UITabBarController, SBDConnectionDelegate, SBDNetworkDelegate {
+class MainTabBarController: UITabBarController, SBDConnectionDelegate {
     private static let TITLE_GROUP_CHANNELS = "Group"
     private static let TITLE_SETTINGS = "Settings"
 
@@ -18,11 +19,11 @@ class MainTabBarController: UITabBarController, SBDConnectionDelegate, SBDNetwor
         super.viewDidLoad()
         
         self.tabBar.tintColor = UIColor(named: "color_bar_item")
+        SBDMain.add(self as SBDConnectionDelegate, identifier: self.description)
     }
-
-    // MARK: SBDNetworkDelegate
-    @objc func didReconnect() {
-        
+    
+    func didSucceedReconnection() {
+        SBSMSyncManager.resumeSynchronize()
     }
 }
 

@@ -43,4 +43,8 @@ extension GroupChannelChatViewController: SBDChannelDelegate {
             self.view.layoutIfNeeded()
         }
     }
+    
+//    func channelWasChanged(_ sender: SBDBaseChannel) {
+//        print((sender as! SBDGroupChannel).messageOffsetTimestamp)
+//    }
 }

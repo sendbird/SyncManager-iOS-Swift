@@ -151,10 +151,8 @@ class ConnectionControl: NSObject, SBDConnectionDelegate {
     }
     
     func didFailReconnection() {
-        //
     }
     
     func didCancelReconnection() {
-        //
     }
 }

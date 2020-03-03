@@ -91,7 +91,7 @@ class GroupChannelChatViewController: BaseViewController, UINavigationController
                                                 action: #selector(GroupChannelChatViewController.clickSettingBarButton(_:)))
         
         self.navigationItem.rightBarButtonItem = self.settingBarButton
-        
+
         self.channel?.markAsRead()
         if self.splitViewController?.displayMode != .allVisible {
             self.backButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.clickBackButton(_:)))
@@ -420,13 +420,6 @@ extension GroupChannelChatViewController: NotificationDelegate {
         let delegate = UIViewController.currentViewController() as? NotificationDelegate
         delegate?.openChat(channelUrl)
         
-    }
-}
-
-// MARK: - SBDNetworkDelegate
-extension GroupChannelChatViewController: SBDNetworkDelegate { 
-    func didReconnect() {
-        // TODO: Fix bug in SDK.
     }
 }
 

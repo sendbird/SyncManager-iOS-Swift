@@ -39,7 +39,7 @@ extension GroupChannelsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //tableView.deselectRow(at: indexPath, animated: true)
-        let channels = collection?.channels ?? []
+        let channels = self.channels
         let channel = channels[indexPath.row]
         let vc = GroupChannelChatViewController.initiate()
         

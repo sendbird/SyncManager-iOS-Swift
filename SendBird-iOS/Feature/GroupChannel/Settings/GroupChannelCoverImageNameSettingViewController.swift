@@ -52,17 +52,22 @@ class GroupChannelCoverImageNameSettingViewController: BaseViewController, UINav
         self.profileImageView.addGestureRecognizer(tapCoverImageGesture)
 
         
+        var coverImageExist = false
         if let coverUrl = self.channel?.coverUrl {
-            if coverUrl.count > 0, !coverUrl.hasPrefix("https://sendbird.com/main/img/cover/") {
+            if coverUrl.count > 0 && !coverUrl.hasPrefix("https://sendbird.com/main/img/cover/") && !coverUrl.hasPrefix("https://static.sendbird.com/sample/cover/") {
                 self.profileImageView.setImage(withCoverUrl: coverUrl)
+                coverImageExist = true
             }
-        } else {
-            if let currentUserID = SBDMain.getCurrentUser()?.userId  {
+        }
+        
+        if let currentUserID = SBDMain.getCurrentUser()?.userId  {
+            if !coverImageExist {
                 let members = self.channel?.members as? [SBDMember] ?? []
                 let filterMembers = members.filter { $0.userId != currentUserID }
                 self.profileImageView.users = filterMembers.count < 4 ? filterMembers : Array(filterMembers[0...3])
             }
         }
+        
         self.profileImageView.makeCircularWithSpacing(spacing: 1)
     }
     

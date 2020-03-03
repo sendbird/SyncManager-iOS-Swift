@@ -143,7 +143,24 @@ extension MessageControl {
         }
         
         let firstModelCreatedAt = models.first?.createdAt
-        let lastModelCreatedAt = models.last?.createdAt
+        let lastModelCreatedAt = models.last?.createdAt // TODO: It has to exclude the pending and failed messages.
+        
+        if newModel.message.isKind(of: SBDUserMessage.self) {
+            let userMessage = newModel.message as! SBDUserMessage
+            if userMessage.requestState() == .pending {
+                models.append(newModel)
+                
+                return IndexPath(row: models.count - 1, section: 0)
+            }
+        }
+        else if newModel.message.isKind(of: SBDFileMessage.self) {
+            let fileMessage = newModel.message as! SBDFileMessage
+            if fileMessage.requestState() == .pending {
+                models.append(newModel)
+                
+                return IndexPath(row: models.count - 1, section: 0)
+            }
+        }
         
         if newModel.createdAt <= firstModelCreatedAt! {
             models.insert(newModel, at: 0)

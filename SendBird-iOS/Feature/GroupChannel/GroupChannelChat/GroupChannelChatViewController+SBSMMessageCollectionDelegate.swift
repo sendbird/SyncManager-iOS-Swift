@@ -10,8 +10,9 @@ import UIKit
 import SendBirdSDK
 import SendBirdSyncManager
 
-extension GroupChannelChatViewController: SBSMMessageCollectionDelegate {
+extension GroupChannelChatViewController: SBSMMessageCollectionDelegate
 
+{
     func collection(_ collection: SBSMMessageCollection, didRemove channel: SBDGroupChannel) {
         // TODO: Close View.
     }

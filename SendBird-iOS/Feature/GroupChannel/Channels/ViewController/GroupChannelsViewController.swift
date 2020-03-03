@@ -32,6 +32,8 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
     }
     
     var channels: [SBDGroupChannel] = []
+    var noLastMessageChannels: [SBDGroupChannel] = []
+    var lastMessageChannels: [SBDGroupChannel] = []
 
     var query: SBDGroupChannelListQuery?
     var collection: SBSMChannelCollection?
@@ -193,6 +195,8 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
         
         DispatchQueue.main.async {
             self.channels = []
+            self.noLastMessageChannels = []
+            self.lastMessageChannels = []
             self.tableView.reloadData()
         }
         
@@ -218,62 +222,21 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
      
     func insertChannels(_ channels: [SBDGroupChannel]) {
         DispatchQueue.main.async {
-            if self.channels.count == 0 {
-                self.channels.insert(channels[0], at: 0)
-            }
-            
-            for insertedChannel in channels {
-                var foundPosition = -1
-                var replace = false
-                for existChannel in self.channels {
-                    if insertedChannel == existChannel {
-                        foundPosition = self.channels.firstIndex(of: existChannel)!
-                        replace = true
-                        break
-                    }
-                    
-                    let order = self.query?.order
-                    if order == SBDGroupChannelListOrder.latestLastMessage {
-                        var timestampOfInsertedChannel = Int64(insertedChannel.createdAt)
-                        var timestampOfExistChannel = Int64(existChannel.createdAt)
-                        
-                        if let lastMessageOfInsertedChannel = insertedChannel.lastMessage {
-                            timestampOfInsertedChannel = Int64(lastMessageOfInsertedChannel.createdAt)
-                        }
-                        
-                        if let lastMessageOfExistChannel = existChannel.lastMessage {
-                            timestampOfExistChannel = Int64(lastMessageOfExistChannel.createdAt)
-                        }
-                        
-                        if (timestampOfExistChannel <= timestampOfInsertedChannel) {
-                            foundPosition = self.channels.firstIndex(of: existChannel)!
-                            break;
-                        }
-                    }
-                    else if order == SBDGroupChannelListOrder.channelMetaDataValueAlphabetical {
-                        // TODO:
-                    }
-                    else if order == SBDGroupChannelListOrder.channelNameAlphabetical {
-                        // TODO:
-                    }
-                    else {
-                        // SBDGroupChannelListOrder.chronological
-                        // TODO:
-                    }
-                }
-                
-                if foundPosition > -1 {
-                    if replace {
-                        self.channels[foundPosition] = insertedChannel
-                    }
-                    else {
-                        self.channels.insert(insertedChannel, at: foundPosition)
-                    }
+            for channel in channels {
+                if channel.lastMessage == nil {
+                    self.noLastMessageChannels.append(channel)
                 }
                 else {
-                    self.channels.append(insertedChannel)
+                    self.lastMessageChannels.append(channel)
                 }
             }
+            
+            self.noLastMessageChannels = self.noLastMessageChannels.sorted(by: { $0.createdAt > $1.createdAt })
+            self.lastMessageChannels = self.lastMessageChannels.sorted(by: { $0.lastMessage!.createdAt > $1.lastMessage!.createdAt })
+            
+            self.channels = []
+            self.channels.append(contentsOf: self.lastMessageChannels)
+            self.channels.append(contentsOf: self.noLastMessageChannels)
             
             self.tableView.reloadData()
         }
@@ -303,63 +266,36 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
     }
 
     func moveChannels(_ channels: [SBDGroupChannel]) {
-        for movedChannel in channels {
-            DispatchQueue.main.async {
-                guard let index = self.channels.firstIndex(of: movedChannel) else { return }
-                self.channels.remove(at: index)
+        DispatchQueue.main.async {
+            for channel in channels {
+                self.noLastMessageChannels.removeObject(channel)
+                self.lastMessageChannels.removeObject(channel)
                 
-                var foundPosition = -1
-                
-                for existChannel in self.channels {
-                    let order = self.query?.order
-                    if order == SBDGroupChannelListOrder.latestLastMessage {
-                        var timestampOfInsertedChannel = Int64(movedChannel.createdAt)
-                        var timestampOfExistChannel = Int64(existChannel.createdAt)
-                        
-                        if let lastMessageOfInsertedChannel = movedChannel.lastMessage {
-                            timestampOfInsertedChannel = Int64(lastMessageOfInsertedChannel.createdAt)
-                        }
-                        
-                        if let lastMessageOfExistChannel = existChannel.lastMessage {
-                            timestampOfExistChannel = Int64(lastMessageOfExistChannel.createdAt)
-                        }
-                        
-                        if (timestampOfExistChannel <= timestampOfInsertedChannel) {
-                            foundPosition = self.channels.firstIndex(of: existChannel)!
-                            break;
-                        }
-                    }
-                    else if order == SBDGroupChannelListOrder.channelMetaDataValueAlphabetical {
-                        // TODO:
-                    }
-                    else if order == SBDGroupChannelListOrder.channelNameAlphabetical {
-                        // TODO:
-                    }
-                    else {
-                        // SBDGroupChannelListOrder.chronological
-                        // TODO:
-                    }
+                if channel.lastMessage == nil {
+                    self.noLastMessageChannels.append(channel)
+                }
+                else {
+                    self.lastMessageChannels.append(channel)
                 }
                 
-                if foundPosition > -1 {
-                    self.channels.insert(movedChannel, at: foundPosition)
-                    self.tableView.moveRow(at: IndexPath(row: index, section: 0), to: IndexPath(row: foundPosition, section: 0))
-                }
+                self.channels = []
+                self.channels.append(contentsOf: self.lastMessageChannels)
+                self.channels.append(contentsOf: self.noLastMessageChannels)
+                self.tableView.reloadData()
             }
         }
     }
 
     func deleteChannels(_ channels: [SBDGroupChannel]) {
         DispatchQueue.main.async {
-            var deletedIndex: [IndexPath] = []
             for deletedChannel in channels {
-                if let row = self.channels.firstIndex(of: deletedChannel) {
-                    let indexPath = IndexPath(row: row, section: 0)
-                    deletedIndex.append(indexPath)
-                    self.channels.removeObject(deletedChannel)
-                }
+                self.noLastMessageChannels.removeObject(deletedChannel)
+                self.lastMessageChannels.removeObject(deletedChannel)
+                
+                self.channels.removeObject(deletedChannel)
             }
-            self.tableView.deleteRows(at: deletedIndex, with: .automatic)
+
+            self.tableView.reloadData()
         }
     }
 }
@@ -397,7 +333,7 @@ extension GroupChannelsViewController: SBSMChannelCollectionDelegate {
             self.insertChannels(channels)
             
         case .update:
-            self.updateChannels(channels)
+            self.moveChannels(channels)
             
         case .remove:
             self.deleteChannels(channels)

@@ -92,7 +92,7 @@ extension GroupChannelTableViewCell {
             
             let filterMembers = members.filter { $0.userId != currentUser.userId }.prefix(4)
             
-            if coverUrl.count > 0 && !coverUrl.hasPrefix("https://sendbird.com/main/img/cover/") {
+            if coverUrl.count > 0 && !coverUrl.hasPrefix("https://sendbird.com/main/img/cover/") && !coverUrl.hasPrefix("https://static.sendbird.com/sample/cover/") {
                 self.profileImagView.setImage(withCoverUrl: coverUrl)
             } else {
                 self.profileImagView.users = Array(filterMembers)

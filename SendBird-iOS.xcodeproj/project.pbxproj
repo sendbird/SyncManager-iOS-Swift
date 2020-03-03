@@ -238,6 +238,7 @@
 		E298FFE8219F20C6009F83D0 /* GroupChannelSettingsTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298FFE7219F20C6009F83D0 /* GroupChannelSettingsTableViewCellDelegate.swift */; };
 		E298FFEF219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298FFED219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.swift */; };
 		E298FFF7219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298FFF5219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.swift */; };
+		E2C78A9C24041452001C6664 /* GroupChannelSettingsResetMyHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C78A9B24041452001C6664 /* GroupChannelSettingsResetMyHistoryTableViewCell.swift */; };
 		E2D0C0CC218A41160080A5F3 /* CustomPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0CB218A41160080A5F3 /* CustomPhotosViewController.swift */; };
 		E2D0C0CF218A429E0080A5F3 /* PhotoViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0CE218A429E0080A5F3 /* PhotoViewer.swift */; };
 		E2D0C105218D07120080A5F3 /* GroupChannelChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C103218D07120080A5F3 /* GroupChannelChatViewController.swift */; };
@@ -379,6 +380,7 @@
 		E298FFE7219F20C6009F83D0 /* GroupChannelSettingsTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		E298FFED219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsNotificationsTableViewCell.swift; sourceTree = "<group>"; };
 		E298FFF5219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsMemberTableViewCell.swift; sourceTree = "<group>"; };
+		E2C78A9B24041452001C6664 /* GroupChannelSettingsResetMyHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsResetMyHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		E2D0C0CB218A41160080A5F3 /* CustomPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotosViewController.swift; sourceTree = "<group>"; };
 		E2D0C0CE218A429E0080A5F3 /* PhotoViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewer.swift; sourceTree = "<group>"; };
 		E2D0C103218D07120080A5F3 /* GroupChannelChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelChatViewController.swift; sourceTree = "<group>"; };
@@ -781,6 +783,7 @@
 				E298FFE3219F1FCC009F83D0 /* GroupChannelSettingsChannelCoverNameTableViewCell.swift */,
 				E298FFED219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.swift */,
 				E298FFF5219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.swift */,
+				E2C78A9B24041452001C6664 /* GroupChannelSettingsResetMyHistoryTableViewCell.swift */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -1198,6 +1201,7 @@
 				BA7EB7A223A3815300EC2494 /* MessageControl.swift in Sources */,
 				52B4779822E1626000C3F598 /* CreateGroupChannelNavigationController.swift in Sources */,
 				BA238A6A23A0BE7000551FD4 /* LoginSubscriber.swift in Sources */,
+				E2C78A9C24041452001C6664 /* GroupChannelSettingsResetMyHistoryTableViewCell.swift in Sources */,
 				E27E3ED0217120320082C91C /* UIViewController+Utils.swift in Sources */,
 				E27E3EE521713DF00082C91C /* NotificationDelegate.swift in Sources */,
 				3175CB6D238FB93200E23263 /* GroupChannelChatViewController+UIImagePickerControllerDelegate.swift in Sources */,

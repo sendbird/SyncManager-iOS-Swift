@@ -78,7 +78,10 @@ class GroupChannelSettingsViewController: BaseViewController, UITableViewDelegat
     
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
+        if section == 1 {
+            return 2;
+        }
+        else if section == 2 {
             return self.members.count + 1
         } else {
             return 1
@@ -110,22 +113,43 @@ class GroupChannelSettingsViewController: BaseViewController, UITableViewDelegat
                 }
             }
             
-            if let url = channel.coverUrl, url.count > 0 && !url.hasPrefix("https://sendbird.com/main/img/cover/") {
-                channelCoverNameCell.profileImageView.setImage(withCoverUrl: url)
+            var coverImageExist = false
+            if let coverUrl = self.channel?.coverUrl {
+                if coverUrl.count > 0 && !coverUrl.hasPrefix("https://sendbird.com/main/img/cover/") && !coverUrl.hasPrefix("https://static.sendbird.com/sample/cover/") {
+                    channelCoverNameCell.profileImageView.setImage(withCoverUrl: coverUrl)
+                    coverImageExist = true
+                }
             }
-            else {
-                channelCoverNameCell.profileImageView.users = members
+            
+            if let currentUserID = SBDMain.getCurrentUser()?.userId  {
+                if !coverImageExist {
+                    let filterMembers = members.filter { $0.userId != currentUserID }
+                    channelCoverNameCell.profileImageView.users = filterMembers.count < 4 ? filterMembers : Array(filterMembers[0...3])
+                }
             }
+            
+//            if let url = channel.coverUrl, url.count > 0 && !url.hasPrefix("https://sendbird.com/main/img/cover/") {
+//                channelCoverNameCell.profileImageView.setImage(withCoverUrl: url)
+//            }
+//            else {
+//                channelCoverNameCell.profileImageView.users = members
+//            }
             channelCoverNameCell.profileImageView.makeCircularWithSpacing(spacing: 1)
             
             return channelCoverNameCell
         case 1:
-            
-            let notiCell = tableView.dequeueReusableCell(GroupChannelSettingsNotificationsTableViewCell.self)
-            notiCell.notificationSwitch.isOn = self.channel?.myPushTriggerOption == .off ? false : true
-            notiCell.delegate = self
-            
-            return notiCell
+            if indexPath.row == 0 {
+                let notiCell = tableView.dequeueReusableCell(GroupChannelSettingsNotificationsTableViewCell.self)
+                notiCell.notificationSwitch.isOn = self.channel?.myPushTriggerOption == .off ? false : true
+                notiCell.delegate = self
+                
+                return notiCell
+            }
+            else {
+                let resetMyHistoryCell = tableView.dequeueReusableCell(GroupChannelSettingsResetMyHistoryTableViewCell.self)
+                
+                return resetMyHistoryCell
+            }
         case 2:
             if indexPath.row == 0 {
                 return tableView.dequeueReusableCell(withIdentifier: "GroupChannelSettingsInviteMemberTableViewCell", for: indexPath)
@@ -185,6 +209,27 @@ class GroupChannelSettingsViewController: BaseViewController, UITableViewDelegat
         tableView.deselectRow(at: indexPath, animated: false)
         
         switch indexPath.section {
+        case 1:
+            if indexPath.row == 1 {
+                let ac: UIAlertController = UIAlertController(title: "Reset Chat History", message: "Are you sure you want to reset chat history in this channel?", preferredStyle: .alert);
+                let actionConfirm = UIAlertAction(title: "Yes", style: .destructive) { (action) in
+                    self.channel?.resetMyHistory(completionHandler: { (error) in
+
+                    })
+                }
+                let actionCancel = UIAlertAction(title: "No", style: .cancel) { (action) in
+                    
+                }
+                
+                ac.addAction(actionConfirm)
+                ac.addAction(actionCancel)
+                
+                self.present(ac, animated: true) {
+                    
+                }
+            }
+            
+            
         case 2:
             if indexPath.row == 0 {
                 // Invite member

@@ -21,25 +21,4 @@ extension GroupChannelsViewController: SBDChannelDelegate {
         self.reloadChannel(sender)
 
     }
-    
-    func channel(_ sender: SBDGroupChannel, userDidJoin user: SBDUser) {
-        self.reloadChannel(sender)
-    }
-    
-    func channel(_ sender: SBDGroupChannel, userDidLeave user: SBDUser) {
-        self.reloadChannel(sender)
-    }
-    
-    func channelWasChanged(_ sender: SBDBaseChannel) {
-        guard let channel = sender as? SBDGroupChannel
-            else { assertionFailure("Channel must group channel"); return }
-        self.reloadChannel(channel)
-    }
-    
-    func channel(_ sender: SBDBaseChannel, messageWasDeleted messageId: Int64) {
-        guard let channel = sender as? SBDGroupChannel
-            else { assertionFailure("Channel must group channel"); return }
-        self.reloadChannel(channel)
-        self.updateTotalUnreadMessageCountBadge()
-    }
 }
