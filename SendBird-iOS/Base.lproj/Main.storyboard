@@ -94,24 +94,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14D-iy-86r" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="594"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="570"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoSb" translatesAutoresizingMaskIntoConstraints="NO" id="sfd-2v-UDd" userLabel="SendBird Logo Image View">
-                                                <rect key="frame" x="176" y="100" width="62" height="72"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoSendbird" translatesAutoresizingMaskIntoConstraints="NO" id="sfd-2v-UDd" userLabel="SendBird Logo Image View">
+                                                <rect key="frame" x="183" y="100" width="48" height="48"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="72" id="X4T-4S-sg6"/>
-                                                    <constraint firstAttribute="width" constant="62" id="k40-vL-Dfb"/>
+                                                    <constraint firstAttribute="height" constant="48" id="X4T-4S-sg6"/>
+                                                    <constraint firstAttribute="width" constant="48" id="k40-vL-Dfb"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USER ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fd-HH-BQ0" userLabel="User ID Label">
-                                                <rect key="frame" x="30" y="228" width="354" height="16"/>
+                                                <rect key="frame" x="30" y="204" width="354" height="16"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="redraw" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aio-RQ-2EP" userLabel="User ID Text Field" customClass="CustomTextField" customModule="SendBird_iOS" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="254" width="354" height="40"/>
+                                                <rect key="frame" x="30" y="230" width="354" height="40"/>
                                                 <color key="tintColor" red="0.47450980390000003" green="0.31372549020000001" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="354" id="Ppd-eC-xzZ"/>
@@ -140,13 +140,13 @@
                                                 </variation>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NICKNAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izf-uh-cxy" userLabel="Nickname Label">
-                                                <rect key="frame" x="30" y="334" width="354" height="16"/>
+                                                <rect key="frame" x="30" y="310" width="354" height="16"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="redraw" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nickname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NBU-gI-peo" userLabel="Nickname Text Field" customClass="CustomTextField" customModule="SendBird_iOS" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="360" width="354" height="40"/>
+                                                <rect key="frame" x="30" y="336" width="354" height="40"/>
                                                 <color key="tintColor" red="0.47450980390000003" green="0.31372549020000001" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="JDM-Lf-kIN"/>
@@ -175,13 +175,13 @@
                                                 </variation>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahx-RJ-o8b">
-                                                <rect key="frame" x="170" y="578" width="74" height="16"/>
+                                                <rect key="frame" x="170" y="554" width="74" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lP4-eR-I01" userLabel="Connect Button" customClass="CustomButton" customModule="SendBird_iOS" customModuleProvider="target">
-                                                <rect key="frame" x="94.666666666666686" y="460" width="225" height="54"/>
+                                                <rect key="frame" x="94.666666666666686" y="436" width="225" height="54"/>
                                                 <color key="backgroundColor" red="0.47450980390000003" green="0.31372549020000001" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="225" id="Ahr-f3-d0x"/>
@@ -304,6 +304,6 @@
         <image name="img_tab_group_channel_selected" width="28" height="28"/>
         <image name="img_tab_settings_normal" width="28" height="28"/>
         <image name="img_tab_settings_selected" width="28" height="28"/>
-        <image name="logoSb" width="72" height="72"/>
+        <image name="logoSendbird" width="48" height="48"/>
     </resources>
 </document>
