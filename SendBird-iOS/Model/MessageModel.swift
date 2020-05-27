@@ -62,9 +62,9 @@ extension MessageModel: Equatable {
 extension MessageModel {
     func cellIdentifier(currentUser: SBDUser) -> String? {
         
-        guard let sender = self.message.getSender() else { assertionFailure(); return nil }
+        let sender = self.message.getSender()
         
-        let isOutgoingMessage = sender.userId == currentUser.userId
+        let isOutgoingMessage = sender?.userId == currentUser.userId
         
         switch self.message {
             case is SBDAdminMessage:

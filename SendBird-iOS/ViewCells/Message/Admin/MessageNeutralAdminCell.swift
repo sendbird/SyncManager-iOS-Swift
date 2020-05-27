@@ -38,26 +38,18 @@ class MessageNeutralAdminCell: MessageCell {
     override func configure(with model: MessageModel) {
         super.configure(with: model)
         var showDateSeperator = false
-
+        guard let adminMessage = model.message as? SBDAdminMessage else { return }
         
         let longClickMessageContainerGesture = UILongPressGestureRecognizer(target: self, action: #selector(MessageNeutralAdminCell.longClickAdminMessage(_:)))
         self.messageContainerView.addGestureRecognizer(longClickMessageContainerGesture)
         
-        self.dateSeperatorLabel.text = Utils.getDateStringForDateSeperatorFromTimestamp((self.msg?.createdAt)!)
-        self.textMessageLabel.text = self.msg?.message
+        self.dateSeperatorLabel.text = Utils.getDateStringForDateSeperatorFromTimestamp(adminMessage.createdAt)
+        self.textMessageLabel.text = adminMessage.message
         
-        if model.hasPrevMessage {
-            
-        } else {
-            
-        }
         // Adjust constraints regarding the prevMessage
         if model.hasPrevMessage {
-            
             showDateSeperator = !model.isPrevMessageSameDay
-            
         } else {
-            
             showDateSeperator = true
         }
         
