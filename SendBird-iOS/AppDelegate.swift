@@ -25,9 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Connect Logger
         // TODO: Remove Logger
         Logger.addDestination(ConsoleDestination())
-         
+
         // Connect SendBird
-        SBDMain.setLogLevel(SBDLogLevel.none)
+        SBDMain.setLogLevel(.info)
         SBDMain.initWithApplicationId("9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23")
         SBDMain.add(self as SBDChannelDelegate, identifier: self.description)
         self.registerForRemoteNotification()
