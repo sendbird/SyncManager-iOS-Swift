@@ -148,7 +148,7 @@ extension GroupChannelChatViewController {
         switch message {
             
         case let message as SBDAdminMessage:
-            AlertControl.show(parent: self, title: message.message ?? "", style: .actionSheet, actionMessage: "Copy message") { _ in
+            AlertControl.show(parent: self, title: message.message, style: .actionSheet, actionMessage: "Copy message") { _ in
                 UIPasteboard.general.string = message.message
                 self.showToast("Copied")
             }

@@ -1,9 +1,9 @@
 PODS:
   - FLAnimatedImage (1.0.12)
   - Hero (1.5.0)
-  - Kingfisher (5.13.2):
-    - Kingfisher/Core (= 5.13.2)
-  - Kingfisher/Core (5.13.2)
+  - Kingfisher (5.14.0):
+    - Kingfisher/Core (= 5.14.0)
+  - Kingfisher/Core (5.14.0)
   - NYTPhotoViewer (1.1.0):
     - NYTPhotoViewer/AnimatedGifSupport (= 1.1.0)
     - NYTPhotoViewer/Core (= 1.1.0)
@@ -12,10 +12,10 @@ PODS:
     - NYTPhotoViewer/Core
   - NYTPhotoViewer/Core (1.1.0)
   - RSKImageCropper (2.2.3)
-  - SendBirdSDK (3.0.170)
-  - SendBirdSyncManager (1.1.18):
-    - SendBirdSDK (~> 3.0.156)
-  - SwiftyBeaver (1.8.4)
+  - SendBirdSDK (3.0.186)
+  - SendBirdSyncManager (1.1.24):
+    - SendBirdSDK (~> 3.0.178)
+  - SwiftyBeaver (1.9.1)
 
 DEPENDENCIES:
   - FLAnimatedImage (~> 1.0)
@@ -40,13 +40,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   Hero: b7385b75e7259da62f4f85462f59a5082d66b058
-  Kingfisher: d342c8354c10c3d85a27d6d4c42c41285924b898
+  Kingfisher: 7b64389a43139c903ec434788344c288217c792d
   NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
-  SendBirdSDK: e880e06fda5a34577b99406fc9dd6e1916bd2510
-  SendBirdSyncManager: e58b0a6c0659fd24dad112b2caaba450bc75e01b
-  SwiftyBeaver: f9a9aba96a6a6166e21682377804d728b0d20b95
+  SendBirdSDK: aabf8c49022f7f8b3118f197d3a18c834357c650
+  SendBirdSyncManager: 9780a222f2011fbe7a0239d11d016015b9c2da13
+  SwiftyBeaver: a1f5691458561414bcfab51874b2b7445451602b
 
 PODFILE CHECKSUM: d8bb6b5f7cfe31bc28a521309887aab1efc383f6
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.2

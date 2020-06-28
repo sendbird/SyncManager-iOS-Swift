@@ -204,7 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let userMessage = message as! SBDUserMessage
             let sender = userMessage.sender
             type = "MESG"
-            body = String(format: "%@: %@", (sender?.nickname)!, userMessage.message!)
+            body = String(format: "%@: %@", (sender?.nickname)!, userMessage.message)
             customType = userMessage.customType!
         } else if message is SBDFileMessage {
             let fileMessage = message as! SBDFileMessage
@@ -223,7 +223,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let adminMessage = message as! SBDAdminMessage
             
             title = ""
-            body = adminMessage.message!
+            body = adminMessage.message
         }
         
         let content = UNMutableNotificationContent()

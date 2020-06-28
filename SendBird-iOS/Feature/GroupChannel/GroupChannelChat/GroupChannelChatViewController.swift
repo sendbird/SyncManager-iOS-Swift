@@ -348,7 +348,7 @@ extension GroupChannelChatViewController {
         /***********************************/
         /* Thumbnail is a premium feature. */
         /***********************************/
-        let thumbnailSize = SBDThumbnailSize.make(withMaxWidth: 320.0, maxHeight: 320.0)!
+        let thumbnailSize = SBDThumbnailSize.make(withMaxWidth: 320.0, maxHeight: 320.0)
         
         guard let params = SBDFileMessageParams(file: fileData) else { return }
         
@@ -506,7 +506,7 @@ extension GroupChannelChatViewController {
 
             for message in messages {
                 if message.requestState() == .pending && message.isKind(of: SBDFileMessage.self) {
-                    let params = self.messageControl.pendingFileMessageParams[message.requestID]
+                    let params = self.messageControl.pendingFileMessageParams[message.requestId]
                     if let index = self.messageControl.insertPendingMessage(by: MessageModel(message, params: params)) {
                         indexPaths.append(index)
                     }
@@ -539,7 +539,7 @@ extension GroupChannelChatViewController {
                 let existingReqId = model.requestID
                 let existingMessageId = model.messageID
                 for message in messages {
-                    let updatedReqId = message.requestID
+                    let updatedReqId = message.requestId
                     let updatedMessageId = message.messageId
                     
                     if existingReqId.count > 0 && updatedReqId.count > 0 && existingReqId == updatedReqId {
@@ -568,7 +568,7 @@ extension GroupChannelChatViewController {
                 let existingReqId = model.requestID
                 let existingMessageId = model.messageID
                 for message in messages {
-                    let updatedReqId = message.requestID
+                    let updatedReqId = message.requestId
                     let updatedMessageId = message.messageId
                     
                     if existingReqId.count > 0 && updatedReqId.count > 0 && existingReqId == updatedReqId {

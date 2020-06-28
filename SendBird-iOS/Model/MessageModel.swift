@@ -33,7 +33,7 @@ class MessageModel {
 
 extension MessageModel {
     var requestID: String {
-        self.message.requestID
+        self.message.requestId
     }
     
     var messageID: Int64 {
@@ -49,7 +49,7 @@ extension MessageModel {
     }
     
     var userID: String? {
-        return message.getSender()?.userId
+        return message.sender?.userId
     }
 }
 
@@ -62,7 +62,7 @@ extension MessageModel: Equatable {
 extension MessageModel {
     func cellIdentifier(currentUser: SBDUser) -> String? {
         
-        let sender = self.message.getSender()
+        let sender = self.message.sender
         
         let isOutgoingMessage = sender?.userId == currentUser.userId
         

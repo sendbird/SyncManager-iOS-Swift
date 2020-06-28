@@ -45,7 +45,7 @@ class MessageIncomingCell: MessageCell {
         var hideDateSeperator = false
         var hideProfileImage = false
         
-        guard let sender = model.message.getSender() else { return }
+        guard let sender = model.message.sender else { return }
         self.profileImageView.setProfileImageView(for: sender)
     
         if model.isPrevMessageSameDay {
@@ -102,14 +102,14 @@ class MessageIncomingCell: MessageCell {
     }
     
     @objc func longClickProfile(_ recognizer: UILongPressGestureRecognizer) {
-        guard let sender = self.message.getSender() else { return }
+        guard let sender = self.message.sender else { return }
         if recognizer.state == .began {
             self.delegate?.didLongClickUserProfile?(sender)
         }
     }
     
     @objc func clickProfile(_ recognizer: UILongPressGestureRecognizer) {
-        guard let sender = self.message.getSender() else { return }
+        guard let sender = self.message.sender else { return }
         self.delegate?.didClickUserProfile?(sender)
     }
     

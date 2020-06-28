@@ -28,7 +28,7 @@ extension MessageControl {
     }
     
     func findIndex(by message: SBDBaseMessage) -> Int? {
-        return self.models.firstIndex { $0.message == message || $0.requestID == message.requestID }
+        return self.models.firstIndex { $0.message == message || $0.requestID == message.requestId }
     }
     
     func findIndexPath(by model: MessageModel) -> IndexPath? {
@@ -45,7 +45,7 @@ extension MessageControl {
     }
     
     func findModel(by message: SBDBaseMessage) -> MessageModel? {
-        return self.models.first { $0.message == message || $0.requestID == message.requestID }
+        return self.models.first { $0.message == message || $0.requestID == message.requestId }
     }
     
     func findMessage(by model: MessageModel) -> SBDBaseMessage? {
@@ -53,7 +53,7 @@ extension MessageControl {
     }
     
     func findMessage(by message: SBDBaseMessage) -> SBDBaseMessage? {
-        return self.models.first { $0.message == message || $0.requestID == message.requestID }?.message
+        return self.models.first { $0.message == message || $0.requestID == message.requestId }?.message
     }
 }
 
@@ -127,7 +127,7 @@ extension MessageControl {
     }
     
     func updatePendingFileMessage(message: SBDFileMessage, params: SBDFileMessageParams) {
-        pendingFileMessageParams[message.requestID] = params
+        pendingFileMessageParams[message.requestId] = params
     }
 }
 
@@ -147,6 +147,7 @@ extension MessageControl {
         
         if newModel.message.isKind(of: SBDUserMessage.self) {
             let userMessage = newModel.message as! SBDUserMessage
+            
             if userMessage.requestState() == .pending {
                 models.append(newModel)
                 
