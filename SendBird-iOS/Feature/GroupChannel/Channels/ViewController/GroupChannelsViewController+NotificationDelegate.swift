@@ -14,7 +14,7 @@ extension GroupChannelsViewController: NotificationDelegate {
         SBDGroupChannel.getWithUrl(channelURL) { channel, error in
             if error != nil { return }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 (UIApplication.shared.delegate as? AppDelegate)?.pushReceivedGroupChannel = nil
                 
                 let vc = GroupChannelChatViewController.initiate()
@@ -22,7 +22,7 @@ extension GroupChannelsViewController: NotificationDelegate {
                 vc.delegate = self
                 let naviVC = UINavigationController(rootViewController: vc)
                 naviVC.modalPresentationStyle = .overCurrentContext
-                self.present(naviVC, animated: true)
+                self?.present(naviVC, animated: true)
             }
         }
     }

@@ -41,7 +41,8 @@ extension GroupChannelChatViewController {
         
         self.keyboardHeight = height ?? 0
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             UIView.animate(withDuration: duration ?? 0, delay: 0, options: .curveEaseOut, animations: {
                 self.inputMessageInnerContainerViewBottomMargin.constant = self.keyboardHeight - self.view.safeAreaInsets.bottom
                 self.view.layoutIfNeeded()
@@ -52,7 +53,8 @@ extension GroupChannelChatViewController {
     }
     
     @objc func keyboardDidShow(_ notification: Notification) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.scrollToBottom(animated: false, force: false)
         }
     }
@@ -65,7 +67,8 @@ extension GroupChannelChatViewController {
         
         let (_, duration, _) = Utils.getKeyboardAnimationOptions(notification: notification)
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             UIView.animate(withDuration: duration ?? 0, delay: 0, options: .curveEaseOut, animations: {
                 self.inputMessageInnerContainerViewBottomMargin.constant = 0
                 self.view.layoutIfNeeded()
@@ -74,7 +77,8 @@ extension GroupChannelChatViewController {
     }
     
     @objc func keyboardDidHide(_ notification: Notification) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.scrollToBottom(animated: false, force: false)
         }
     }

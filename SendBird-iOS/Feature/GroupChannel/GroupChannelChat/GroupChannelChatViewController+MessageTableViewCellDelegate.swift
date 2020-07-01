@@ -114,7 +114,8 @@ extension GroupChannelChatViewController: MessageCellDelegate {
     }
     
     func didClickUserProfile(_ user: SBDUser) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             let vc = UserProfileViewController.initiate()
             vc.user = user
             guard let navigationController = self.navigationController else { return }
@@ -148,14 +149,16 @@ extension GroupChannelChatViewController {
         switch message {
             
         case let message as SBDAdminMessage:
-            AlertControl.show(parent: self, title: message.message, style: .actionSheet, actionMessage: "Copy message") { _ in
+            AlertControl.show(parent: self, title: message.message, style: .actionSheet, actionMessage: "Copy message") { [weak self] _ in
+                guard let self = self else { return }
                 UIPasteboard.general.string = message.message
                 self.showToast("Copied")
             }
             
         case let message as SBDUserMessage:
             
-            let copyAction = UIAlertAction(title: "Copy message", style: .default) { action in
+            let copyAction = UIAlertAction(title: "Copy message", style: .default) { [weak self] action in
+                guard let self = self else { return }
                 UIPasteboard.general.string = message.message
                 self.showToast("Copied")
             }
@@ -186,7 +189,8 @@ extension GroupChannelChatViewController {
     }
     
     func deleteMessage(_ message: SBDBaseMessage) {
-        AlertControl.show(parent: self, title: "Are you sure you want to delete this message?", message: nil, style: .actionSheet, actionMessage: "Yes. Delete the message") { _ in
+        AlertControl.show(parent: self, title: "Are you sure you want to delete this message?", message: nil, style: .actionSheet, actionMessage: "Yes. Delete the message") { [weak self] _ in
+            guard let self = self else { return }
             self.channel?.delete(message) { error in
                 if let error = error {
                     AlertControl.showError(parent: self, error: error)

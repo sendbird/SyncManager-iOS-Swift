@@ -19,7 +19,8 @@ import FLAnimatedImage
 extension GroupChannelChatViewController: SBDChannelDelegate {
     func channelDidUpdateReadReceipt(_ sender: SBDGroupChannel) {
         guard sender == self.channel else { return }
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             UIView.setAnimationsEnabled(false)
             self.tableView.reloadData()
             self.tableView.setContentOffset(self.tableView.contentOffset, animated: false)
@@ -30,12 +31,13 @@ extension GroupChannelChatViewController: SBDChannelDelegate {
     func channelDidUpdateTypingStatus(_ sender: SBDGroupChannel) {
         let typingIndicatorText = Utils.buildTypingIndicatorLabel(channel: sender)
         if self.typingIndicatorTimer != nil {
-            self.typingIndicatorTimer!.invalidate()
+            self.typingIndicatorTimer?.invalidate()
             self.typingIndicatorTimer = nil
         }
         self.typingIndicatorTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(GroupChannelChatViewController.hideTypingIndicator(_:)), userInfo: nil, repeats: false)
         let hasText = typingIndicatorText.count > 0
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.typingIndicatorContainerView.isHidden = !hasText
             self.typingIndicatorLabel.text = typingIndicatorText
             self.messageTableViewBottomMargin.constant = hasText ? self.typingIndicatorContainerViewHeight.constant : 0
@@ -43,8 +45,4 @@ extension GroupChannelChatViewController: SBDChannelDelegate {
             self.view.layoutIfNeeded()
         }
     }
-    
-//    func channelWasChanged(_ sender: SBDBaseChannel) {
-//        print((sender as! SBDGroupChannel).messageOffsetTimestamp)
-//    }
 }

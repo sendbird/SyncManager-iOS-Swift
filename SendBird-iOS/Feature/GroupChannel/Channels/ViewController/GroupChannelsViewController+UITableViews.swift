@@ -55,7 +55,8 @@ extension GroupChannelsViewController: UITableViewDelegate {
         let leaveAction = UIContextualAction(style: .destructive, title: "Leave") { action, sourceView, completionHandler in
             let channel = self.channels[indexPath.row]
 
-            channel.leave { error in
+            channel.leave { [weak self] error in
+                guard let self = self else { return }
                 if let error = error {
                     AlertControl.showError(parent: self, error: error)
                     return

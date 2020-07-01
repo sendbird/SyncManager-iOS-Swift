@@ -140,7 +140,8 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
         let title = Utils.createGroupChannelName(channel: channel)
 
         AlertControl.show(parent: self, title: title, actionMessage: "Leave Channel") { _ in
-            channel.leave { error in
+            channel.leave { [weak self] error in
+                guard let self = self else { return }
                 if let error = error {
                     AlertControl.showError(parent: self, error: error)
                     return
@@ -183,7 +184,8 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
         guard let channelUrl = timer.userInfo as? String else { return }
         self.trypingIndicatorTimer[channelUrl]?.invalidate()
         self.trypingIndicatorTimer.removeValue(forKey: channelUrl)
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.tableView.reloadData()
         }
     }
@@ -193,7 +195,8 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
         self.initGroupChannelListQuery()
         self.initChannelCollection();
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.channels = []
             self.noLastMessageChannels = []
             self.lastMessageChannels = []
@@ -204,7 +207,8 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
     }
     
     func loadChannelListNextPage(_ refresh: Bool) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.collection?.fetch() { error in
                 if let error = error {
                     if error.code != SBSMErrorCode.duplicatedFetch.rawValue {
@@ -221,7 +225,8 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
     }
      
     func insertChannels(_ channels: [SBDGroupChannel]) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             for channel in channels {
                 if channel.lastMessage == nil {
                     self.noLastMessageChannels.append(channel)
@@ -243,7 +248,8 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
     }
     
     func reloadChannel(_ channel: SBDGroupChannel) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             guard let index = self.channels.firstIndex(of: channel) else { return }
             guard let cell = self.tableView.cellForRow(at: .init(row: index, section: 0)) as? GroupChannelTableViewCell else { return }
 
@@ -258,7 +264,8 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
         }
         
         for updatedChannel in channels {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
                 guard let index = self.channels.firstIndex(of: updatedChannel) else { return }
                 self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
             }
@@ -266,7 +273,8 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
     }
 
     func moveChannels(_ channels: [SBDGroupChannel]) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             for channel in channels {
                 self.noLastMessageChannels.removeObject(channel)
                 self.lastMessageChannels.removeObject(channel)
@@ -287,15 +295,15 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
     }
 
     func deleteChannels(_ channels: [SBDGroupChannel]) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             for deletedChannel in channels {
-                self.noLastMessageChannels.removeObject(deletedChannel)
-                self.lastMessageChannels.removeObject(deletedChannel)
+                self?.noLastMessageChannels.removeObject(deletedChannel)
+                self?.lastMessageChannels.removeObject(deletedChannel)
                 
-                self.channels.removeObject(deletedChannel)
+                self?.channels.removeObject(deletedChannel)
             }
 
-            self.tableView.reloadData()
+            self?.tableView.reloadData()
         }
     }
 }
@@ -303,16 +311,16 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
 // MARK: - Utilities
 extension GroupChannelsViewController {
     private func showLoadingIndicatorView() {
-        DispatchQueue.main.async {
-            self.loadingIndicatorView.isHidden = false
-            self.loadingIndicatorView.startAnimating()
+        DispatchQueue.main.async { [weak self] in
+            self?.loadingIndicatorView.isHidden = false
+            self?.loadingIndicatorView.startAnimating()
         }
     }
     
     private func hideLoadingIndicatorView() {
-        DispatchQueue.main.async {
-            self.loadingIndicatorView.isHidden = true
-            self.loadingIndicatorView.stopAnimating()
+        DispatchQueue.main.async { [weak self] in
+            self?.loadingIndicatorView.isHidden = true
+            self?.loadingIndicatorView.stopAnimating()
         }
     }
 }
@@ -342,21 +350,21 @@ extension GroupChannelsViewController: SBSMChannelCollectionDelegate {
             self.moveChannels(channels)
 
         case .clear:
-            DispatchQueue.main.async {
-                self.channels = []
-                self.tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.channels = []
+                self?.tableView.reloadData()
             }
             
         case .none:
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
             }
             
         default:
             assertionFailure("Undefine action")
 
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
             }
         }
     }
@@ -371,9 +379,9 @@ extension GroupChannelsViewController: CreateGroupChannelViewControllerDelegate 
 
         let naviVC = UINavigationController(rootViewController: vc)
         naviVC.modalPresentationStyle = .overCurrentContext
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 3000)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 3000)) { [weak self] in
             naviVC.modalPresentationStyle = .overCurrentContext
-            self.tabBarController?.present(naviVC, animated: true, completion: nil)
+            self?.tabBarController?.present(naviVC, animated: true, completion: nil)
         }
     }
 }

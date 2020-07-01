@@ -214,12 +214,15 @@ extension GroupChannelChatViewController {
     
     @objc func clickBackButton(_ sender: AnyObject) {
         if self.splitViewController?.displayMode == .allVisible { return }
+        self.typingIndicatorTimer?.invalidate()
+        self.typingIndicatorTimer = nil
         self.dismiss(animated: true, completion: nil)
     }
     
     @objc func hideTypingIndicator(_ timer: Timer) {
         self.typingIndicatorTimer?.invalidate()
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.typingIndicatorContainerView.isHidden = true
             self.messageTableViewBottomMargin.constant = 0
             self.view.updateConstraints()
@@ -250,10 +253,10 @@ extension GroupChannelChatViewController {
          
         self.isTableViewLoading = true
         
-        collection?.fetch(in: .previous) { hasMore, error in
+        collection?.fetch(in: .previous) { [weak self] hasMore, error in
+            guard let self = self else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.isTableViewLoading = false
-                
                 if let error = error {
                     return
                 }
@@ -287,7 +290,8 @@ extension GroupChannelChatViewController {
         self.sendUserMessageButton.isEnabled = false
         
         var pendingMessage: SBDUserMessage?
-        pendingMessage = channel.sendUserMessage(messageText) { message, error in
+        pendingMessage = channel.sendUserMessage(messageText) { [weak self] message, error in
+            guard let self = self else { return }
             self.channel?.endTyping()
             self.setSent(message: message, error: error)
         }
@@ -404,7 +408,8 @@ extension GroupChannelChatViewController {
         self.channel?.resendFileMessage(with: message, binaryData: nil, progressHandler: { bytesSent, totalBytesSent, totalBytesExpectedToSend in
             let progress = CGFloat(totalBytesSent) / CGFloat(totalBytesExpectedToSend)
             cell.showProgress(progress)
-        }, completionHandler: { message, error in
+        }, completionHandler: { [weak self] message, error in
+            guard let self = self else { return }
             self.setSent(message: message, error: error)
         })
     }
@@ -533,7 +538,8 @@ extension GroupChannelChatViewController {
     }
     
     func updateMessages(messages: [SBDBaseMessage]) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             for i in stride(from: 0, through: self.messageControl.models.count - 1, by: 1) {
                 let model = self.messageControl.models[i]
                 let existingReqId = model.requestID
@@ -558,7 +564,8 @@ extension GroupChannelChatViewController {
     }
     
     func removeMessages(messages: [SBDBaseMessage]) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             let isLastMessageVisible = self.isLastMessageVisible()
             var removedMessageModels: [MessageModel] = []
             
