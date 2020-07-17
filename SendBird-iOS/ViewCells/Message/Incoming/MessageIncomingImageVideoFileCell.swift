@@ -9,6 +9,7 @@
 import UIKit
 import SendBirdSDK
 import FLAnimatedImage
+import Kingfisher
 
 class MessageIncomingImageVideoFileCell: MessageIncomingCell {
     
@@ -16,6 +17,8 @@ class MessageIncomingImageVideoFileCell: MessageIncomingCell {
     @IBOutlet weak var videoPlayIconImageView: UIImageView!
     @IBOutlet weak var imageMessagePlaceholderImageView: UIImageView!
     @IBOutlet weak var videoMessagePlaceholderImageView: UIImageView!
+    
+    var task: DownloadTask?
     
     override func awakeFromNib() {
         self.messageCellType = .imageVideo
@@ -90,11 +93,10 @@ class MessageIncomingImageVideoFileCell: MessageIncomingCell {
             self.setAnimatedImage(nil, hash: 0)
             self.setImage(nil)
             return
-            
         }
         
-        self.imageFileMessageImageView.kf.setImage(with: imageURL) { result in
-            
+        self.task?.cancel()
+        let task = self.imageFileMessageImageView.kf.setImage(with: imageURL) { result in
             self.hideAllPlaceholders()
             
             switch result {
@@ -127,6 +129,7 @@ class MessageIncomingImageVideoFileCell: MessageIncomingCell {
                 
             }
         }
+        self.task = task
          
     }
     
