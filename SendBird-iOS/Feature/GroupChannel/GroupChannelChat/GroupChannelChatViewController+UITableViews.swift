@@ -36,7 +36,7 @@ extension GroupChannelChatViewController: UITableViewDataSource, UITableViewDele
             let messageCell = cell as? MessageCell
             else { assertionFailure(); return UITableViewCell() }
         
-        if model.message.requestState() != .pending {
+        if model.message.sendingStatus != .pending {
             messageCell.delegate = self
         }
         

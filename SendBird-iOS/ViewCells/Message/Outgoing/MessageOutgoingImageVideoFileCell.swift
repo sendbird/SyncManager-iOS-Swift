@@ -169,10 +169,9 @@ extension MessageOutgoingImageVideoFileCell {
         }
 
         guard let fileMessage = self.message as? SBDFileMessage else { return }
-        let state = fileMessage.requestState()
-        switch state {
-        case .failed:
 
+        switch fileMessage.sendingStatus {
+        case .failed:
             self.hideReadStatus()
             self.hideProgress()
             self.showFailureElement()
@@ -189,8 +188,8 @@ extension MessageOutgoingImageVideoFileCell {
             DispatchQueue.main.async {
                 self.updateImage(imageData: params.file, isGIF: fileType.hasPrefix("image/gif"))
             }
-        case .pending:
             
+        case .pending:
             self.hideReadStatus()
             self.hideFailureElement()
             self.showBottomMargin()
@@ -211,7 +210,6 @@ extension MessageOutgoingImageVideoFileCell {
             
              
         case .succeeded:
-             
             self.hideFailureElement()
             let url: URL?
              
@@ -223,7 +221,6 @@ extension MessageOutgoingImageVideoFileCell {
             }
 
             guard let imageURL = url else { return }
-            
             
             var placeholder: UIImage?
             
@@ -250,7 +247,7 @@ extension MessageOutgoingImageVideoFileCell {
                 }
             }
             
-        case .none:
+        case .none, .canceled:
             assertionFailure()
             
         @unknown default:

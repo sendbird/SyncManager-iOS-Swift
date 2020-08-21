@@ -65,7 +65,7 @@ class MessageOutgoingGeneralFileCell: MessageOutgoingCell {
         ])
         self.fileNameLabel.attributedText = filename
 
-        switch self.message.requestState() {
+        switch self.message.sendingStatus {
         case .pending:
             
             // Outgoing general file message
@@ -74,14 +74,12 @@ class MessageOutgoingGeneralFileCell: MessageOutgoingCell {
             self.showBottomMargin()
             self.delegate = nil
             
-            DispatchQueue.main.async {
-                guard let progress = self.model.progress else { return }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self, let progress = self.model.progress else { return }
                 self.showProgress(progress)
-                
             }
-             
             
-        case .failed:
+        case .failed, .canceled:
             assertionFailure("Need Logic")
             
         case .succeeded:

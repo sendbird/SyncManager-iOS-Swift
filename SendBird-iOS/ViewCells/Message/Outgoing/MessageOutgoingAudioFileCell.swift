@@ -67,7 +67,7 @@ class MessageOutgoingAudioFileCell: MessageOutgoingCell {
         
         self.fileNameLabel.attributedText = filename
         
-        switch message.requestState() {
+        switch message.sendingStatus {
         case .pending:
             // Outgoing audio file message
             self.hideReadStatus()
@@ -80,7 +80,7 @@ class MessageOutgoingAudioFileCell: MessageOutgoingCell {
                 }
             }
               
-        case .failed:
+        case .failed, .canceled:
             // Failed outgoing audio file message
             self.hideReadStatus()
             self.hideProgress()

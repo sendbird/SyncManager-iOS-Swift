@@ -113,6 +113,7 @@ class GroupChannelsViewController: BaseViewController, SBDConnectionDelegate {
     func initGroupChannelListQuery() {
         self.query = SBDGroupChannel.createMyGroupChannelListQuery()
         self.query!.order = .latestLastMessage
+//        self.query!.includeEmptyChannel = false
         self.query!.limit = 30
     }
     

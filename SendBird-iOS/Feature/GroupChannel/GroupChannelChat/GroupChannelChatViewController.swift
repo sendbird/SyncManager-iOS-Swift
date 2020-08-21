@@ -147,6 +147,10 @@ class GroupChannelChatViewController: BaseViewController, UINavigationController
             self?.isTableViewInitiating = false
             self?.tableView.reloadData()
         }
+        
+        self.collection?.fetchFailedMessages({ (error) in
+            
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -293,7 +297,8 @@ extension GroupChannelChatViewController {
         pendingMessage = channel.sendUserMessage(messageText) { [weak self] message, error in
             guard let self = self else { return }
             self.channel?.endTyping()
-            self.setSent(message: message, error: error)
+            self.collection?.handleSendMessageResponse(message, error)
+//            self.setSent(message: message, error: error)
         }
         
         self.setPending(pendingMessage)
@@ -496,7 +501,7 @@ extension GroupChannelChatViewController {
             return
         }
         
-        self.collection?.appendMessage(message)
+        self.collection?.handleSendMessageResponse(message, error)
     }
     
     func insertRows(messages: [SBDBaseMessage]) {
@@ -510,7 +515,7 @@ extension GroupChannelChatViewController {
             let isLastMessageVisible = self.isLastMessageVisible()
 
             for message in messages {
-                if message.requestState() == .pending && message.isKind(of: SBDFileMessage.self) {
+                if message.sendingStatus == .pending && message.isKind(of: SBDFileMessage.self) {
                     let params = self.messageControl.pendingFileMessageParams[message.requestId]
                     if let index = self.messageControl.insertPendingMessage(by: MessageModel(message, params: params)) {
                         indexPaths.append(index)

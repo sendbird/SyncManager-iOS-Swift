@@ -148,7 +148,7 @@ extension MessageControl {
         if newModel.message.isKind(of: SBDUserMessage.self) {
             let userMessage = newModel.message as! SBDUserMessage
             
-            if userMessage.requestState() == .pending {
+            if userMessage.sendingStatus == .pending {
                 models.append(newModel)
                 
                 return IndexPath(row: models.count - 1, section: 0)
@@ -156,7 +156,7 @@ extension MessageControl {
         }
         else if newModel.message.isKind(of: SBDFileMessage.self) {
             let fileMessage = newModel.message as! SBDFileMessage
-            if fileMessage.requestState() == .pending {
+            if fileMessage.sendingStatus == .pending {
                 models.append(newModel)
                 
                 return IndexPath(row: models.count - 1, section: 0)

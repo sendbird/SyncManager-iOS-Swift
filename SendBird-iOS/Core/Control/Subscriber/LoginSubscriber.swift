@@ -37,7 +37,9 @@ struct SBDLoginSubscriber {
             return
         }
         
-        SBSMSyncManager.setup(withUserId: userID)
+        let option = SBSMSyncManagerOptions()
+//        option.messageResendPolicy = .manual
+        SBSMSyncManager.setup(withUserId: userID, options: option)
         SBDMain.connect(withUserId: userID) { user, error in
             let userDefault = UserDefaults.standard
             if let error = error {
@@ -55,7 +57,7 @@ struct SBDLoginSubscriber {
             
             if let pushToken: Data = SBDMain.getPendingPushToken() {
                 SBDMain.registerDevicePushToken(pushToken, unique: true, completionHandler: { (status, error) in
-                    guard let _: SBDError = error else {
+                    guard error == nil else {
                         print("APNS registration failed.")
                         return
                     }

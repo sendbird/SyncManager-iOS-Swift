@@ -80,7 +80,7 @@ class MessageOutgoingCell: MessageCell {
             self.messageContainerViewTopMargin.constant = Constants.messageContainerViewTopMarginNormal
         }
         
-        let failed = model.message.requestState() == .failed
+        let failed = model.message.sendingStatus == .failed
         
         if hideMessageStatus, hideReadCount, !failed {
             self.messageDateLabel.text = ""
