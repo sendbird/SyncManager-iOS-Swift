@@ -1,5 +1,28 @@
-# SendBird SyncManager Sample 
-The repository for a sample project that use `SendBird SyncManager` for **LocalCache**. Manager offers an event-based data management so that each view would see a single spot by subscribing data event. And it stores the data into database which implements local caching for faster loading.  
+# SendBird SyncManager for iOS sample 
+
+![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)
+![Languages](https://img.shields.io/badge/language-Objective--C-orange.svg)
+
+## Introduction
+
+SyncManager for iOS is a Chat SDK add-on that optimizes the user caching experience by interlinking the synchronization of the local data storage with the chat data in Sendbird server through an event-driven structure. Provided here is a SyncManager for iOS sample to experience first-hand the benefits of Sendbird’s SyncManager.
+
+### Benefits
+
+Sendbird SyncManager provides the local caching system and data synchronization with the Sendbird server, which are run on an event-driven structure. According to the real-time events of the messages and channels, SyncManager takes care of the background tasks for the cache updates from the Sendbird server to the local device. By leveraging this systemized structure with connection-based synchronization, Syncmanager allows you to easily integrate the Chat SDK to utilize all of its features, while also reducing data usage and offering a reliable and effortless storage mechanism. 
+
+### Sendbird SyncManager for iOS doc
+
+Find out more about Sendbird SyncManager for iOS at [SyncManager for iOS doc](https://docs.sendbird.com/ios/sync_manager_getting_started)
+
+<br />
+
+## Before getting started
+
+This section provides the prerequisites for testing Sendbird SyncManager for iOS sample app.
+
+### Requirements
+
 
 ## SendBird SyncManager Framework
 Refers to [SendBird SyncManager Framework](https://github.com/sendbird/sendbird-syncmanager-ios)
