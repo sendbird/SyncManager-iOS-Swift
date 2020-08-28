@@ -23,6 +23,22 @@ This section provides the prerequisites for testing Sendbird SyncManager for iOS
 
 ### Requirements
 
+The minimum requirements for SyncManager for iOS are:
+
+- Chat SDK for iOS is 3.0.198 or higher
+- iOS 8.0+
+
+### Try the sample app applied with your data 
+
+If you would like to try the sample app specifically fit to your usage, you can do so by replacing the default sample app ID with yours, which you can obtain by [creating your Sendbird application from the dashboard](https://docs.sendbird.com/ios/quick_start#3_install_and_configure_the_chat_sdk_4_step_1_create_a_sendbird_application_from_your_dashboard). Furthermore, you could also add data of your choice on the dashboard to test. This will allow you to experience the sample app with data from your Sendbird application. 
+
+<br />
+
+## Getting started
+
+This section explains the steps you need to take before testing the iOS sample app.
+
+
 
 ## SendBird SyncManager Framework
 Refers to [SendBird SyncManager Framework](https://github.com/sendbird/sendbird-syncmanager-ios)
