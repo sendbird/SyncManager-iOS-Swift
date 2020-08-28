@@ -40,7 +40,7 @@ This section explains the steps you need to take before testing the iOS sample a
 
 ### Create a project
 
-Create a project to get started; Sendbird SyncManager for iOS supports both Objective-C and Swift.
+Create a project to get started: Sendbird SyncManager for iOS supports both Objective-C and Swift.
 
 ### Install SyncManager for iOS
 
@@ -61,13 +61,13 @@ target YOUR_PROJECT_TARGET do
 end
 ```
 
-2. Install SendBird SyncManager framework through CocoaPods.
+2. Install the SendBird SyncManager framework through CocoaPods.
 
 ```bash
 pod install
 ```
 
-3. Update SendBird SyncManager framework through CocoaPods.
+3. Update the SendBird SyncManager framework through CocoaPods.
 
 ```bash
 pod update SendBirdSyncManager
