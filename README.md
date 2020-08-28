@@ -13,7 +13,7 @@ Sendbird SyncManager provides the local caching system and data synchronization 
 
 ### Sendbird SyncManager for iOS doc
 
-Find out more about Sendbird SyncManager for iOS at [SyncManager for iOS doc](https://docs.sendbird.com/ios/sync_manager_getting_started)
+Find out more about Sendbird SyncManager for iOS at [SyncManager for iOS doc](https://docs.sendbird.com/ios/sync_manager_getting_started).
 
 <br />
 
