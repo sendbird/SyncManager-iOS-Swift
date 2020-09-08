@@ -49,7 +49,7 @@ You can install SyncManager for iOS sample app through either [CocoaPods](https:
 
 > Note: Sendbird SyncManager for iOS is Sendbird Chat SDK-dependent. If you install the SyncManager, CocoaPods and Carthage will automatically install the Chat SDK for iOS.
 
-#### CocoaPods
+#### - CocoaPods
 
 1. Add below into your `Podfile` on Xcode.
 
@@ -76,7 +76,7 @@ pod update SendBirdSyncManager
 
 Now you can see the installed Sendbird SyncManager framework by inspecting `YOUR_PROJECT.xcworkspace`.
 
-#### Carthage
+#### - Carthage
 
 1. Add `github "sendbird/sendbird-syncmanager-ios"` to your `Cartfile`.
 2. Run `carthage update`.
