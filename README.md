@@ -1,4 +1,4 @@
-# SendBird SyncManager for iOS sample 
+# Sendbird SyncManager for iOS sample 
 
 ![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)
 ![Languages](https://img.shields.io/badge/language-Objective--C-orange.svg)
@@ -11,9 +11,10 @@ SyncManager for iOS is a Chat SDK add-on that optimizes the user caching experie
 
 Sendbird SyncManager provides the local caching system and data synchronization with the Sendbird server, which are run on an event-driven structure. According to the real-time events of the messages and channels, SyncManager takes care of the background tasks for the cache updates from the Sendbird server to the local device. By leveraging this systemized structure with connection-based synchronization, SyncManager allows you to easily integrate the Chat SDK to utilize all of its features, while also reducing data usage and offering a reliable and effortless storage mechanism. 
 
-### Sendbird SyncManager for iOS doc
+### More about Sendbird SyncManager for iOS
 
-Find out more about Sendbird SyncManager for iOS at [SyncManager for iOS doc](https://docs.sendbird.com/ios/sync_manager_getting_started).
+Find out more about Sendbird SyncManager for iOS at [SyncManager for iOS doc](https://docs.sendbird.com/ios/sync_manager_getting_started). If you need any help in resolving any issues or have questions, visit [our community](https://community.sendbird.com).
+
 
 <br />
 
@@ -61,19 +62,19 @@ target YOUR_PROJECT_TARGET do
 end
 ```
 
-2. Install the SendBird SyncManager framework through CocoaPods.
+2. Install the Sendbird SyncManager framework through CocoaPods.
 
 ```bash
 pod install
 ```
 
-3. Update the SendBird SyncManager framework through CocoaPods.
+3. Update the Sendbird SyncManager framework through CocoaPods.
 
 ```bash
 pod update SendBirdSyncManager
 ```
 
-Now you can see the installed SendBird SyncManager framework by inspecting `YOUR_PROJECT.xcworkspace`.
+Now you can see the installed Sendbird SyncManager framework by inspecting `YOUR_PROJECT.xcworkspace`.
 
 #### Carthage
 
