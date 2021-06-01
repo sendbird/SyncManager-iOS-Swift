@@ -342,7 +342,7 @@ extension GroupChannelsViewController: SBSMChannelCollectionDelegate {
             self.insertChannels(channels)
             
         case .update:
-            self.moveChannels(channels)
+            self.updateChannels(channels)
             
         case .remove:
             self.deleteChannels(channels)
