@@ -7,7 +7,7 @@ inhibit_all_warnings!
 def common_pods
   
   # Pods for SendBird-iOS
-  pod 'SendBirdSyncManager'
+  pod 'SendBirdSyncManager', '~> 1.1.26'
   pod 'RSKImageCropper'
   pod 'NYTPhotoViewer', '~> 1.1.0'
   pod 'FLAnimatedImage', '~> 1.0'
