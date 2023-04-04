@@ -3,6 +3,13 @@
 ![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)
 ![Languages](https://img.shields.io/badge/language-Objective--C-orange.svg)
 
+## Deprecation Note (v3)
+:warning: Please note that SyncManager along with Sendbird’s SDK v3 will be deprecated by **July 2023**. You may still use SyncManager at your choice, but no new updates or bug fixes will be made to SDK v3 and SyncManager.
+
+**We recommend clients to plan their migration to SDK v4 and Local caching embeded in v4 as early as possible as there are breaking changes.** We also provide prioritized support for migration and any issues related to v4. SDK v4 provides far richer and robust features in Websocket, Polls, Scheduled Messages, Pinned Message, and many more. So try it out now! ([Chat SDK v4 Local caching samples](https://github.com/sendbird/sendbird-chat-sample-ios/tree/main/Apps/LocalCachingGroupChannel))
+
+<br />
+
 ## Introduction
 
 SyncManager for iOS is a Chat SDK add-on that optimizes the user caching experience by interlinking the synchronization of the local data storage with the chat data in Sendbird server through an event-driven structure. Provided here is a SyncManager for iOS sample to experience first-hand the benefits of Sendbird’s SyncManager.
